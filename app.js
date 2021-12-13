@@ -1,4 +1,5 @@
 
+class Dinosaurs{
     // Create Dino Constructor
 
     function Dino(species, name, height, weight, diet) {
@@ -17,6 +18,7 @@
     // Create Dino Objects
 
     const myDino = new Dino();
+    myDino.
 
     console.log(myDino);
 
@@ -36,7 +38,7 @@
       const diet = document.getElementById('diet').value;
       const continent = document.getElementById('continent').value;
 
-      const fullInches = feet*12 + inches;
+      const fullInches = feet * 12 + inches;
 
       // not needed
       return {
@@ -119,15 +121,71 @@
     // Generate Tiles for each Dino in Array
 
     const generateTiles = function (dinoData, humanData) {
-      const numRows = 3;
-      const numCols = 3;
-      const humanTileIndex = 4;
+      const totalTiles = 9;
+      const humanTileIndex = Math.floor(totalTiles/2);
 
+      var tilesArray = [];
 
+      while (i < totalTiles) {
+        if (i == humanTileIndex) {
+          dinoArry[i] = "Human";
+        } else {
+          dinoArray[i] = "";
+        }
+        i++;
+      }
 
-    }
+      // build Object Literal
+      if (species == "Human") {
+        {
+          species: human.name,
+          fact: null
+        }
+      }
+
 
         // Add tiles to DOM
+      tilesArray.forEach(function(tile,index) {
+          var newGridTile = document.createElement("div");
+          newGridTile.className = "grid-item";
+
+          var heading = document.createElement("h3");
+          heading.innerHTML= tile.species;
+          var image = document.createElement("img");
+          image.src = tile.image;
+          var fact = document.createElement("p");
+          heading.innerHTML= tile.fact;
+
+          newGridTile.appendChild(heading);
+
+          var name="Shreerang Patwardhan"
+          var finalsummary ="Spatial Unlimited is a Tech blog where, examples using Google Maps API v3 and Jquery Mobile are shared. I have tried to give back to the developer community as much as I can.";
+          var finaldate = new Date().toLocaleString();
+          var a =document.createElement("a");
+          var h3=document.createElement("h3");
+          var p=document.createElement("p");
+          var p1=document.createElement("p");
+          var li = document.createElement("li");
+          a.setAttribute('href', "#");
+          h3.innerHTML="Author: "+name;
+          p.innerHTML="Description: "+finalsummary;
+          p1.innerHTML="Last update:"+finaldate;
+          p1.setAttribute("class","ui-li-aside");
+          a.appendChild(p1);
+          a.appendChild(p);
+          a.appendChild(h3);
+          li.appendChild(a)
+          document.getElementById("content").appendChild(li);
+
+          <img>
+          <p>
+          var endGridTile = document.createElement("</div>");
+          document.getElementById("grid").appendChild(endGridTile);
+
+          document.getElementById("grid").appendChild(newGridTile);
+      })
+
+    }
 
     // Remove form from screen
 
