@@ -183,10 +183,10 @@
             tilesArray[i] = humanData;
           } else {
             console.log(dinoData[j]);
-            tilesArray[i] = dinoData[j].Dino;
+            tilesArray[i] = dinoData[j];
             console.log(tilesArray[i]);
-            if (dinoData[j].Dino.species !== "Pigeon") {
-              tilesArray[i].Dino.fact = generateFact(dinoData[j]);
+            if (dinoData[j].species !== "Pigeon") {
+              tilesArray[i].fact = generateFact(dinoData[j]);
             }
             j++;
           }
