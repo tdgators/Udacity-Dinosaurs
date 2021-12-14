@@ -15,15 +15,19 @@
 
     // Create Dino Objects
 
-    const createDino = function () {
-      const dinoData = fetchDinoData();
-      console.log(dinoData);
-      const array = [];
-      dinoData.forEach(function (dino, index) {
-        // not sure that I need to create these variable names, will revisit.
-        array[index] = new Dino(dino);
-      })
-      return array;
+    const createDino = async function () {
+      try {
+        const dinoData = await fetchDinoDataAsync();
+        console.log(dinoData);
+        const array = [];
+        dinoData.forEach(function (dino, index) {
+          // not sure that I need to create these variable names, will revisit.
+          array[index] = new Dino(dino);
+        })
+        return array;
+      } catch (e) {
+        console.log(e);
+      }
     }
 
     // Create Human Object
@@ -53,23 +57,25 @@
 
     // Helper functions
 
-    /*
     // async function, may not use. fetch for json data.
     const fetchDinoDataAsync = async function () {
-      const response = await fetch("dino.json");
-      if (!response.ok) {
-        throw new Error("HTTP error: " + response.status);
+      try {
+        const response = await fetch("dino.json");
+        if (!response.ok) {
+          throw new Error("HTTP error: " + response.status);
+        }
+        const data = await response.json();
+        console.log(data);
+        if (data.Dinos) {
+          console.log(data.Dinos);
+        } else {
+          console.log(response);
+        }
+        return data;
+      } catch (e) {
+        console.log(e);
       }
-      const data = response.json();
-      console.log(data);
-      if (data.Dinos) {
-        console.log(data.Dinos);
-      } else {
-        console.log(response);
-      }
-      return data;
     }
-    */
 
     // non-async/await, promise-based fetch for json data.
     const fetchDinoData = function fetchDinoData() {
