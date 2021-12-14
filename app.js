@@ -64,7 +64,7 @@
           throw new Error("HTTP error: " + response.status);
         }
         const data = await response.json();
-        console.log(data);
+        //console.log(data);
 
         // return object without the "Dinos" key prior to the arrays.
         return data.Dinos;
@@ -91,9 +91,9 @@
     }
 
     const generateFact = function (data, human) {
-      console.log(data.compareHeight(human.height));
-      console.log(data.compareDiet(human.diet));
-      console.log(data.compareContinent(human.where));
+      //console.log(data.compareHeight(human.height));
+      //console.log(data.compareDiet(human.diet));
+      //console.log(data.compareContinent(human.where));
 
       const weightString = "This dinosaur weighs about " + data.weight + " pounds."
       const whenString = "The " + data.species + " lived during the " + data.when + " period."
@@ -118,7 +118,7 @@
           factString = whenString;
           break;
       }
-      console.log(factString);
+      //console.log(factString);
       return factString;
     }
 
@@ -169,7 +169,7 @@
 
         const dinoData = await createDino();
         const humanData = await formData;
-        console.log("generateTiles:")
+        //console.log("generateTiles:")
         //console.log(dinoData);
         //console.log(JSON.stringify(dinoData));
         //console.log(humanData);
@@ -182,14 +182,14 @@
         while (i < lengthData) {
           if (i == humanTileIndex) {
             tilesArray.push(humanData);
-            tilesArray[i].fact = "";
+            tilesArray[i].fact = humanData.name;
           } else {
-            console.log(dinoData[j]);
+            //console.log(dinoData[j]);
             tilesArray.push(dinoData[j]);
-            console.log(tilesArray[i]);
+            //console.log(tilesArray[i]);
             if (dinoData[j].species != "Pigeon") {
               const newFact = generateFact(dinoData[j], humanData);
-              console.log(newFact);
+              //console.log(newFact);
               tilesArray[i].fact = newFact;
 
             }
@@ -197,8 +197,8 @@
           }
           i++;
         }
-        console.log("tilesArray: ")
-        console.log(tilesArray);
+        //console.log("tilesArray: ")
+        //console.log(tilesArray);
 
           // Add tiles to DOM
         tilesArray.forEach(function(tile,index) {
@@ -227,13 +227,13 @@
     // Remove form from screen
 
     function hideForm() {
-      document.getElementById('dino-compare').style.visibility='hidden';
+      document.getElementById('dino-compare').style.visibility='none';
     }
 
 
 // On button click, prepare and display infographic
 
     document.getElementById('btn').onclick = function(){
-      const success = generateTiles();
       hideForm();
+      const success = generateTiles();
     };
