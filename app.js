@@ -183,6 +183,7 @@
           if (i == humanTileIndex) {
             tilesArray.push(humanData);
             tilesArray[i].species = humanData.name;
+            tilesArray[i].fact = "";
           } else {
             tilesArray.push(dinoData[j]);
             if (dinoData[j].species != "Pigeon") {
