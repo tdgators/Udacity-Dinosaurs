@@ -48,8 +48,8 @@
 
       const height = feet * 12 + inches;
 
-      const data = {species: species, name: name, weight: weight, height: height, diet: diet, where: where};
-      //console.log(data);
+      const data = {"species": species, "name": name, "weight": weight, "height": height, "diet": diet, "where": where};
+      console.log(data);
       return createHuman(data);
     })();
 
