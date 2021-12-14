@@ -36,19 +36,21 @@
     }
 
     // Use IIFE to get human data from form
+    // this doesn't work, as it's taking a snapshot on initial load, but not after button process
+    // are they looking for JQuery here (as an IIFE)?
 
     let formData = (function(){
-      const species = "Human";
-      const name = document.getElementById("name").value;
-      const feet = Number(document.getElementById("feet").value) || 0;
-      const inches = Number(document.getElementById("inches").value) || 0;
-      const weight = Number(document.getElementById("weight").value) || 0;
-      const diet = document.getElementById("diet").value;
-      const where = document.getElementById("continent").value;
+      let species = "Human";
+      let name = document.getElementById("name").value;
+      let feet = Number(document.getElementById("feet").value) || 0;
+      let inches = Number(document.getElementById("inches").value) || 0;
+      let weight = Number(document.getElementById("weight").value) || 0;
+      let diet = document.getElementById("diet").value;
+      let where = document.getElementById("continent").value;
 
-      const height = feet * 12 + inches;
+      let height = feet * 12 + inches;
 
-      const data = {"species": species, "name": name, "weight": weight, "height": height, "diet": diet, "where": where};
+      let data = {"species": species, "name": name, "weight": weight, "height": height, "diet": diet, "where": where};
       console.log(data);
       return createHuman(data);
     })();
@@ -91,9 +93,6 @@
     }
 
     const generateFact = function (data, human) {
-      //console.log(data.compareHeight(human.height));
-      //console.log(data.compareDiet(human.diet));
-      //console.log(data.compareContinent(human.where));
 
       const weightString = "This dinosaur weighs about " + data.weight + " pounds."
       const whenString = "The " + data.species + " lived during the " + data.when + " period."
@@ -171,11 +170,9 @@
         const humanData = await formData;
         //console.log("generateTiles:")
         console.log(dinoData);
-        //console.log(JSON.stringify(dinoData));
         console.log(humanData);
         console.log(humanData.name);
         // lengthData equals numer of dinosaurs array length + 1 human
-        //console.log(Object.keys(dinoData).length);
         const lengthData = Object.keys(dinoData).length + 1;
         const humanTileIndex = Math.floor(lengthData/2);
 
@@ -185,14 +182,10 @@
             tilesArray.push(humanData);
             tilesArray[i].fact = humanData.name;
           } else {
-            //console.log(dinoData[j]);
             tilesArray.push(dinoData[j]);
-            //console.log(tilesArray[i]);
             if (dinoData[j].species != "Pigeon") {
               const newFact = generateFact(dinoData[j], humanData);
-              //console.log(newFact);
               tilesArray[i].fact = newFact;
-
             }
             j++;
           }
