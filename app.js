@@ -1,64 +1,52 @@
 
-class Dinosaurs{
     // Create Dino Constructor
 
-    function Dino(species, name, height, weight, diet) {
-      this.species = species;
-      this.name = name;
-      this.height = height;
-      this.weight = weight;
-      this.diet = diet;
-      this.image = "images/" + species.toLowerCase() + ".png";
-
-      //this.identify = function () {
-      //  console.log(`${this.name}'s population is ${this.population}.`);
-      //};
+    function Dino(data) {
+      this.species = data.species;
+      this.weight = data.weight;
+      this.height = data.height;
+      this.diet = data.diet;
+      this.where = data.where;
+      this.when = data.when;
+      this.fact = data.fact;
+      this.name = data.name;
+      this.image = "images/" + data.species.toLowerCase() + ".png";
     }
 
     // Create Dino Objects
 
-    const myDino = new Dino();
-    myDino.
-
-    console.log(myDino);
-
+    const dinoArry = function createDino() {
+      const dinoData = fetchDinoData();
+      const array = [];
+      dinoData.forEach(function (dino, index) {
+        // not sure that I need to create these variable names, will revisit.
+        array[index] = new Dino(dino);
+      })
+      return array;
+    }
 
     // Create Human Object
-
-    // incomplete
-    const human = new Dino("human", name, height, weight, diet);
+    // assign human to new Dino Constructor?
+    const humanObject = function createHuman(data) {
+      return new Dino(data);
+    }
 
     // Use IIFE to get human data from form
 
-    let formData = (function(){
+    const formData = (function(){
+      const species = "human";
       const name = document.getElementById('name').value;
-      const feet = document.getElementById('feet').value || 0;
-      const inches = document.getElementById('inches').value || 0;
-      const weight = document.getElementById('weight').value || 0;
+      const feet = Number(document.getElementById('feet').value) || 0;
+      const inches = Number(document.getElementById('inches').value) || 0;
+      const weight = Number(document.getElementById('weight').value) || 0;
       const diet = document.getElementById('diet').value;
-      const continent = document.getElementById('continent').value;
+      const where = document.getElementById('continent').value;
 
-      const fullInches = feet * 12 + inches;
+      const height = feet * 12 + inches;
 
-      // not needed
-      return {
-        getProperties: function(){
-          console.log(`Formula: ${chemicalFormula}`);
-          console.log(`Molar Mass: ${molarMass} g/mol`);
-        }
-      };
+      return createHuman({species: species, name: name, weight: weight, height: height, diet: diet, name: name, where: where});
     })();
 
-    // example iife from course
-    let diana = (function () {
-      let secretIdentity = 'Diana Prince';
-
-      return {
-        introduce: function () {
-          console.log(`Hi! I am ${secretIdentity}`);
-        }
-      };
-    })();
 
     // Helper functions
 
@@ -66,7 +54,7 @@ class Dinosaurs{
     const fetchDinoDataAsync = async function () {
       const response = await fetch("data.json");
       if (!response.ok) {
-        throw new Error("HTTP error, status = " + response.status);
+        throw new Error("HTTP error: " + response.status);
       }
       const data = await response.json();
       if (data.Dinos) {
@@ -98,96 +86,92 @@ class Dinosaurs{
 
     // Create Dino Compare Method 1
     // NOTE: Weight in JSON file is in lbs, height in inches.
-    const compareMethod1 = async function(height) {
-      var dinoData = fetchDinoData();
 
-
+    // for these, these will update the object or potentially create an Mixin?
+    Dino.prototype.compareHeight = function(height) {
+      let statement = "You are the same height!";
+      if (this.height > height) {
+        statement = "You are taller than a " + this.species + " who is only " + this.height + " inches.";
+      } else if (this.height < height) {
+        statement = "A typical " + this.species + " is taller than you and is about " + this.height + " inches."
+      }
+      return statement;
     }
 
     // Create Dino Compare Method 2
     // NOTE: Weight in JSON file is in lbs, height in inches.
 
-    const compareMethod1 = function(diet) {
-
+    Dino.prototype.compareDiet = function(diet) {
+      let statement = "You have the same diet!";
+      if (this.diet != diet) {
+        statement = "This dinosaur is a " + this.diet;
+      }
+      return statement;
     }
 
     // Create Dino Compare Method 3
     // NOTE: Weight in JSON file is in lbs, height in inches.
 
-    const compareMethod1 = function(continent) {
-
+    Dino.prototype.compareContinent = function(continent) {
+      let statement = "You are from the same continent!";
+      if (this.where != where) {
+        statement = "This dinosaur was typically found in " + this.where;
+      }
+      return statement;
     }
 
     // Generate Tiles for each Dino in Array
 
-    const generateTiles = function (dinoData, humanData) {
-      const totalTiles = 9;
-      const humanTileIndex = Math.floor(totalTiles/2);
+    const generateTiles = function (dinoData) {
 
       var tilesArray = [];
+      // use dinoData and numanData from object creation
+      let i = 0;
+      let j = 0;
+      // lengthData equals numer of dinosaurs array length + 1 human
+      const lengthData = dinoData.length;
+      const humanTileIndex = Math.floor(lengthData/2);
 
-      while (i < totalTiles) {
+      // while the array length
+      while (i < (dinoData.length + 1)) {
         if (i == humanTileIndex) {
-          dinoArry[i] = "Human";
+          tilesArray[i] = humanData;
         } else {
-          dinoArray[i] = "";
+          tilesArray[j] = dinoData[j];
+          j++;
         }
         i++;
       }
 
-      // build Object Literal
-      if (species == "Human") {
-        {
-          species: human.name,
-          fact: null
-        }
-      }
-
-
         // Add tiles to DOM
       tilesArray.forEach(function(tile,index) {
-          var newGridTile = document.createElement("div");
-          newGridTile.className = "grid-item";
+        var gridTile = document.createElement("div");
+        gridTile.className = "grid-item";
 
-          var heading = document.createElement("h3");
-          heading.innerHTML= tile.species;
-          var image = document.createElement("img");
-          image.src = tile.image;
-          var fact = document.createElement("p");
-          heading.innerHTML= tile.fact;
+        var heading = document.createElement("h3");
+        heading.innerHTML= tile.species;
+        var image = document.createElement("img");
+        image.src = tile.image;
+        var fact = document.createElement("p");
+        fact.innerHTML= tile.fact;
 
-          newGridTile.appendChild(heading);
+        gridTile.appendChild(heading);
+        gridTile.appendChild(image);
+        gridTile.appendChild(fact);
 
-          var name="Shreerang Patwardhan"
-          var finalsummary ="Spatial Unlimited is a Tech blog where, examples using Google Maps API v3 and Jquery Mobile are shared. I have tried to give back to the developer community as much as I can.";
-          var finaldate = new Date().toLocaleString();
-          var a =document.createElement("a");
-          var h3=document.createElement("h3");
-          var p=document.createElement("p");
-          var p1=document.createElement("p");
-          var li = document.createElement("li");
-          a.setAttribute('href', "#");
-          h3.innerHTML="Author: "+name;
-          p.innerHTML="Description: "+finalsummary;
-          p1.innerHTML="Last update:"+finaldate;
-          p1.setAttribute("class","ui-li-aside");
-          a.appendChild(p1);
-          a.appendChild(p);
-          a.appendChild(h3);
-          li.appendChild(a)
-          document.getElementById("content").appendChild(li);
-
-          <img>
-          <p>
-          var endGridTile = document.createElement("</div>");
-          document.getElementById("grid").appendChild(endGridTile);
-
-          document.getElementById("grid").appendChild(newGridTile);
       })
 
     }
 
     // Remove form from screen
 
+    function hideForm() {
+      docuemnt.getElavonById('dino-compare').style.visibility='hidden';
+    }
+
 
 // On button click, prepare and display infographic
+
+    docuemnt.getElavonById('btn').onclick = function(){
+      
+    }
