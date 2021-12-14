@@ -180,10 +180,10 @@
         // while the array length
         while (i < lengthData) {
           if (i == humanTileIndex) {
-            tilesArray[i] = humanData;
+            tilesArray.push(humanData);
           } else {
             console.log(dinoData[j]);
-            tilesArray[i] = dinoData[j];
+            tilesArray.push(dinoData[j]);
             console.log(tilesArray[i]);
             if (dinoData[j].species != "Pigeon") {
               tilesArray[i].fact = generateFact(dinoData[j]);
