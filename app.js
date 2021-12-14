@@ -149,7 +149,7 @@
     // Create Dino Compare Method 3
     // NOTE: Weight in JSON file is in lbs, height in inches.
 
-    Dino.prototype.compareContinent = function(continent) {
+    Dino.prototype.compareContinent = function(where) {
       let statement = "You are from the same continent!";
       if (this.where != where) {
         statement = "This dinosaur was typically found in " + this.where;
