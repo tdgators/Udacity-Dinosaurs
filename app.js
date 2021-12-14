@@ -175,6 +175,8 @@
 
         const dinoData = createDino();
         const humanData = formData;
+        console.log(dinoData);
+        console.log(humanData);
         // lengthData equals numer of dinosaurs array length + 1 human
         const lengthData = dinoData.length + 1;
         const humanTileIndex = Math.floor(lengthData/2);
