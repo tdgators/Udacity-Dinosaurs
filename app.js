@@ -169,11 +169,11 @@
         const dinoData = await createDino();
         const humanData = await formData;
         console.log("generateTiles:")
-        console.log(dinoData);
-        console.log(JSON.stringify(dinoData));
-        console.log(humanData);
+        //console.log(dinoData);
+        //console.log(JSON.stringify(dinoData));
+        //console.log(humanData);
         // lengthData equals numer of dinosaurs array length + 1 human
-        console.log(Object.keys(dinoData).length);
+        //console.log(Object.keys(dinoData).length);
         const lengthData = Object.keys(dinoData).length + 1;
         const humanTileIndex = Math.floor(lengthData/2);
 
@@ -185,7 +185,7 @@
             console.log(dinoData[j]);
             tilesArray[i] = dinoData[j];
             console.log(tilesArray[i]);
-            if (dinoData[j].species !== "Pigeon") {
+            if (dinoData[j].species != "Pigeon") {
               tilesArray[i].fact = generateFact(dinoData[j]);
             }
             j++;
