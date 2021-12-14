@@ -19,7 +19,7 @@
       const dinoData = fetchDinoData();
       console.log(dinoData);
       const array = [];
-      await dinoData.forEach(function (dino, index) {
+      dinoData.forEach(function (dino, index) {
         // not sure that I need to create these variable names, will revisit.
         array[index] = new Dino(dino);
       })
