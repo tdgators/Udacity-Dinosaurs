@@ -17,8 +17,8 @@
 
     const createDino = async function () {
       try {
-        const dinoData = await fetchDinoDataAsync();
         console.log(dinoData);
+        const dinoData = await fetchDinoDataAsync();
         const array = [];
         dinoData.forEach(function (dino, index) {
           // not sure that I need to create these variable names, will revisit.
