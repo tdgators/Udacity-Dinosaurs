@@ -79,7 +79,7 @@
 
     // non-async/await, promise-based fetch for json data.
     // not working, as the promise never finishes... tried several different things.  Used Async function above instead.
-    const fetchDinoData = function fetchDinoData() {
+    const fetchDinoData = function () {
       fetch('dino.json')
       .then(function (response) { response.json() })
       .then(function(data) {
@@ -169,7 +169,7 @@
         let j = 0;
 
         const dinoData = await createDino();
-        const humanData = await formData;
+        const humanData = await formData();
         //console.log("generateTiles:")
         console.log(dinoData);
         console.log(humanData);
