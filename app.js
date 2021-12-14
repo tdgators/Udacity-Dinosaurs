@@ -30,7 +30,7 @@
     }
 
     // Create Human Object
-    // assign human to new Dino Constructor?
+    // assign human to new Dino Constructor?  should this be something other than new?
     const createHuman = function (data) {
       return new Dino(data);
     }
@@ -181,10 +181,11 @@
           if (i == humanTileIndex) {
             tilesArray[i] = humanData;
           } else {
-            tilesArray[j] = dinoData[j].Dino;
-            console.log(tilesArray[j]);
+            console.log(dinoData[j]);
+            tilesArray[i] = dinoData[j].Dino;
+            console.log(tilesArray[i]);
             if (dinoData[j].Dino.species !== "Pigeon") {
-              tilesArray[j].Dino.fact = generateFact(dinoData[j]);
+              tilesArray[i].Dino.fact = generateFact(dinoData[j]);
             }
             j++;
           }
