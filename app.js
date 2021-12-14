@@ -49,7 +49,7 @@
       const height = feet * 12 + inches;
 
       const data = {species: species, name: name, weight: weight, height: height, diet: diet, name: name, where: where};
-      console.log(data);
+      //console.log(data);
       return createHuman(data);
     })();
 
@@ -65,11 +65,7 @@
         }
         const data = await response.json();
         console.log(data);
-        if (data.Dinos) {
-          console.log(data.Dinos);
-        } else {
-          console.log(response);
-        }
+
         // return object without the "Dinos" key prior to the arrays.
         return data.Dinos;
       } catch (e) {
@@ -83,11 +79,8 @@
       fetch('dino.json')
       .then(function (response) { response.json() })
       .then(function(data) {
-        console.log("fetch data: " + data);
-        if (data.Dinos) {
-        } else {
-          console.log(data);
-        }
+        //console.log("fetch data: " + data);
+
         return data.Dinos;
       })
 
@@ -175,6 +168,7 @@
 
         const dinoData = createDino();
         const humanData = formData;
+        console.log("generateTiles:")
         console.log(dinoData);
         console.log(humanData);
         // lengthData equals numer of dinosaurs array length + 1 human
@@ -194,7 +188,7 @@
           }
           i++;
         }
-        console.log(tilesArray);
+        console.log("tilesArray: " + tilesArray);
 
           // Add tiles to DOM
         tilesArray.forEach(function(tile,index) {
