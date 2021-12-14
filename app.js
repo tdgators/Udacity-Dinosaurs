@@ -53,7 +53,7 @@
 
     // Helper functions
 
-
+    /*
     // async function, may not use. fetch for json data.
     const fetchDinoDataAsync = async function () {
       const response = await fetch("dino.json");
@@ -69,6 +69,7 @@
       }
       return data;
     }
+    */
 
     // non-async/await, promise-based fetch for json data.
     const fetchDinoData = function fetchDinoData() {
