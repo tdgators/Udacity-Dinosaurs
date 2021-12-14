@@ -39,21 +39,23 @@
     // this doesn't work, as it's taking a snapshot on initial load, but not after button process
     // are they looking for JQuery here (as an IIFE)?
 
-    let formData = (function(){
-      let species = "Human";
-      let name = document.getElementById("name").value;
-      let feet = Number(document.getElementById("feet").value) || 0;
-      let inches = Number(document.getElementById("inches").value) || 0;
-      let weight = Number(document.getElementById("weight").value) || 0;
-      let diet = document.getElementById("diet").value;
-      let where = document.getElementById("continent").value;
+    let formData = function() {
+      return (function(){
+        let species = "Human";
+        let name = document.getElementById("name").value;
+        let feet = Number(document.getElementById("feet").value) || 0;
+        let inches = Number(document.getElementById("inches").value) || 0;
+        let weight = Number(document.getElementById("weight").value) || 0;
+        let diet = document.getElementById("diet").value;
+        let where = document.getElementById("continent").value;
 
-      let height = feet * 12 + inches;
+        let height = feet * 12 + inches;
 
-      let data = {"species": species, "name": name, "weight": weight, "height": height, "diet": diet, "where": where};
-      console.log(data);
-      return createHuman(data);
-    })();
+        let data = {"species": species, "name": name, "weight": weight, "height": height, "diet": diet, "where": where};
+        console.log(data);
+        return createHuman(data);
+      })();
+    }
 
 
     // Helper functions
