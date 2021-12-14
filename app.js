@@ -17,7 +17,6 @@
 
     const createDino = async function () {
       try {
-        console.log(dinoData);
         const dinoData = await fetchDinoDataAsync();
         const array = [];
         dinoData.forEach(function (dino, index) {
@@ -71,13 +70,15 @@
         } else {
           console.log(response);
         }
-        return data;
+        // return object without the "Dinos" key prior to the arrays.
+        return data.Dinos;
       } catch (e) {
         console.log(e);
       }
     }
 
     // non-async/await, promise-based fetch for json data.
+    // not working, as the promise never finishes... tried several different things.  Used Async function above instead.
     const fetchDinoData = function fetchDinoData() {
       fetch('dino.json')
       .then(function (response) { response.json() })
@@ -87,7 +88,7 @@
         } else {
           console.log(data);
         }
-        return data;
+        return data.Dinos;
       })
 
       .catch(function () {
