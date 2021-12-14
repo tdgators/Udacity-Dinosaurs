@@ -103,13 +103,13 @@
 
       switch (Math.floor(Math.random()* 6)) {
         case 0:
-          factString = compareHeight(human.height);
+          factString = data.compareHeight(human.height);
           break;
         case 1:
-          factString = compareDiet(human.diet);
+          factString = data.compareDiet(human.diet);
           break;
         case 2:
-          factString = compareContinent(human.where);
+          factString = data.compareContinent(human.where);
           break;
         case 3:
           factString = weightString;
