@@ -170,6 +170,7 @@
         const humanData = await formData;
         console.log("generateTiles:")
         console.log(dinoData);
+        console.log(JSON.stringify(dinoData));
         console.log(humanData);
         // lengthData equals numer of dinosaurs array length + 1 human
         console.log(Object.keys(dinoData).length);
