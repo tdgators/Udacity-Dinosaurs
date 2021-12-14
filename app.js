@@ -78,13 +78,13 @@
         if (!response.ok) {
           throw new Error("HTTP error, status = " + response.status);
         }
-        response.json()
+        return response.json()
       })
       .then(function(data) {
         console.log("fetch data: " + data);
         if (data.Dinos) {
         } else {
-          console.log(response);
+          console.log(data);
         }
         return data;
       })
