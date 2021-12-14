@@ -159,15 +159,15 @@
 
     // Generate Tiles for each Dino in Array
 
-    const generateTiles = function () {
+    const generateTiles = async function () {
       try {
         var tilesArray = [];
         // use createDino and createHuman from object creation
         let i = 0;
         let j = 0;
 
-        const dinoData = createDino();
-        const humanData = formData.Dino;
+        const dinoData = await createDino();
+        const humanData = await formData;
         console.log("generateTiles:")
         console.log(dinoData);
         console.log(humanData);
