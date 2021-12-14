@@ -167,49 +167,52 @@
     // Generate Tiles for each Dino in Array
 
     const generateTiles = function () {
+      try {
+        var tilesArray = [];
+        // use createDino and createHuman from object creation
+        let i = 0;
+        let j = 0;
 
-      var tilesArray = [];
-      // use createDino and createHuman from object creation
-      let i = 0;
-      let j = 0;
+        const dinoData = createDino();
+        const humanData = formData;
+        // lengthData equals numer of dinosaurs array length + 1 human
+        const lengthData = dinoData.length + 1;
+        const humanTileIndex = Math.floor(lengthData/2);
 
-      const dinoData = createDino();
-      const humanData = formData;
-      // lengthData equals numer of dinosaurs array length + 1 human
-      const lengthData = dinoData.length + 1;
-      const humanTileIndex = Math.floor(lengthData/2);
-
-      // while the array length
-      while (i < lengthData) {
-        if (i == humanTileIndex) {
-          tilesArray[i] = humanData;
-        } else {
-          tilesArray[j] = dinoData[j];
-          if (dinoData[j].species !== "Pigeon") {
-            tilesArray[j].fact = generateFact(dinoData[j]);
+        // while the array length
+        while (i < lengthData) {
+          if (i == humanTileIndex) {
+            tilesArray[i] = humanData;
+          } else {
+            tilesArray[j] = dinoData[j];
+            if (dinoData[j].species !== "Pigeon") {
+              tilesArray[j].fact = generateFact(dinoData[j]);
+            }
+            j++;
           }
-          j++;
+          i++;
         }
-        i++;
+
+          // Add tiles to DOM
+        tilesArray.forEach(function(tile,index) {
+          var gridTile = document.createElement("div");
+          gridTile.className = "grid-item";
+
+          var heading = document.createElement("h3");
+          heading.innerHTML= tile.species;
+          var image = document.createElement("img");
+          image.src = tile.image;
+          var fact = document.createElement("p");
+          fact.innerHTML= tile.fact;
+
+          gridTile.appendChild(heading);
+          gridTile.appendChild(image);
+          gridTile.appendChild(fact);
+        })
+        return true;
+      } catch (e) {
+        console.log(e);
       }
-
-        // Add tiles to DOM
-      tilesArray.forEach(function(tile,index) {
-        var gridTile = document.createElement("div");
-        gridTile.className = "grid-item";
-
-        var heading = document.createElement("h3");
-        heading.innerHTML= tile.species;
-        var image = document.createElement("img");
-        image.src = tile.image;
-        var fact = document.createElement("p");
-        fact.innerHTML= tile.fact;
-
-        gridTile.appendChild(heading);
-        gridTile.appendChild(image);
-        gridTile.appendChild(fact);
-      })
-      return true;
     }
 
     // Remove form from screen
