@@ -167,13 +167,13 @@
         let j = 0;
 
         const dinoData = createDino();
-        const humanData = formData;
+        const humanData = formData.Dino;
         console.log("generateTiles:")
         console.log(dinoData);
         console.log(humanData);
         // lengthData equals numer of dinosaurs array length + 1 human
-        console.log(dinoData.length);
-        const lengthData = dinoData.length + 1;
+        console.log(Object.keys(dinoData).length);
+        const lengthData = Object.keys(dinoData).length + 1;
         const humanTileIndex = Math.floor(lengthData/2);
 
         // while the array length
@@ -181,9 +181,9 @@
           if (i == humanTileIndex) {
             tilesArray[i] = humanData;
           } else {
-            tilesArray[j] = dinoData[j];
-            if (dinoData[j].species !== "Pigeon") {
-              tilesArray[j].fact = generateFact(dinoData[j]);
+            tilesArray[j] = dinoData[j].Dino;
+            if (dinoData[j].Dino.species !== "Pigeon") {
+              tilesArray[j].Dino.fact = generateFact(dinoData[j]);
             }
             j++;
           }
