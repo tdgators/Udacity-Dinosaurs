@@ -15,8 +15,8 @@
 
     // Create Dino Objects
 
-    const createDino = async function () {
-      const dinoData = await fetchDinoDataAsync();
+    const createDino = function () {
+      const dinoData = fetchDinoData();
       console.log(dinoData);
       const array = [];
       await dinoData.forEach(function (dino, index) {
@@ -77,7 +77,9 @@
         if (!response.ok) {
           throw new Error("HTTP error, status = " + response.status);
         }
-        const data = response.json();
+        response.json();
+      })
+      .then(function(data) {
         if (data.Dinos) {
         } else {
           console.log(response);
@@ -128,14 +130,14 @@
 
     // Generate Tiles for each Dino in Array
 
-    const generateTiles = async function () {
+    const generateTiles = function () {
 
       var tilesArray = [];
       // use createDino and createHuman from object creation
       let i = 0;
       let j = 0;
 
-      const dinoData = await createDino();
+      const dinoData = createDino();
       const humanData = formData();
       // lengthData equals numer of dinosaurs array length + 1 human
       const lengthData = dinoData.length + 1;
@@ -180,9 +182,9 @@
 
 // On button click, prepare and display infographic
 
-    document.getElementById('btn').onclick = async function(){
-      const success = await generateTiles();
+    document.getElementById('btn').onclick = function(){
+      const success = generateTiles();
       if (success == true) {
-        await hideForm()
+        hideForm()
       }
     };
