@@ -80,7 +80,7 @@
     // non-async/await, promise-based fetch for json data.
     const fetchDinoData = function fetchDinoData() {
       fetch('dino.json')
-      .then(response => response.json())
+      .then(function (response) { response.json() })
       .then(function(data) {
         console.log("fetch data: " + data);
         if (data.Dinos) {
