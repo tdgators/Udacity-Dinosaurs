@@ -78,14 +78,14 @@
         if (!response.ok) {
           throw new Error("HTTP error, status = " + response.status);
         }
-        response.json();
-      })
-      .then(function(data) {
-        if (data.Dinos) {
-        } else {
-          console.log(response);
-        }
-        return data;
+        response.json()
+        .then(function(data) {
+          if (data.Dinos) {
+          } else {
+            console.log(response);
+          }
+          return data;
+        })
       })
       .catch(function () {
         console.error;
