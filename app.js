@@ -182,6 +182,7 @@
             tilesArray[i] = humanData;
           } else {
             tilesArray[j] = dinoData[j].Dino;
+            console.log(tilesArray[j]);
             if (dinoData[j].Dino.species !== "Pigeon") {
               tilesArray[j].Dino.fact = generateFact(dinoData[j]);
             }
