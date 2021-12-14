@@ -60,7 +60,7 @@
       if (!response.ok) {
         throw new Error("HTTP error: " + response.status);
       }
-      const data = await response.json();
+      const data = response.json();
       console.log(data);
       if (data.Dinos) {
         console.log(data.Dinos);
