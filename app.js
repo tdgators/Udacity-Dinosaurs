@@ -192,6 +192,7 @@
           }
           i++;
         }
+        console.log(tilesArray);
 
           // Add tiles to DOM
         tilesArray.forEach(function(tile,index) {
@@ -208,6 +209,8 @@
           gridTile.appendChild(heading);
           gridTile.appendChild(image);
           gridTile.appendChild(fact);
+
+          document.getElementById("grid").appendChild(gridTile) ;
         })
         return true;
       } catch (e) {
@@ -227,6 +230,7 @@
     document.getElementById('btn').onclick = function(){
       const success = generateTiles();
       if (success == true) {
-        hideForm()
+        hideForm();
+
       }
     };
