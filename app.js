@@ -173,7 +173,7 @@
       let j = 0;
 
       const dinoData = createDino();
-      const humanData = formData();
+      const humanData = formData;
       // lengthData equals numer of dinosaurs array length + 1 human
       const lengthData = dinoData.length + 1;
       const humanTileIndex = Math.floor(lengthData/2);
