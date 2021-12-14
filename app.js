@@ -15,8 +15,9 @@
 
     // Create Dino Objects
 
-    const createDino = function () {
-      const dinoData = fetchDinoData();
+    const createDino = async function () {
+      const dinoData = await fetchDinoDataAsync();
+      console.log(dinoData);
       const array = [];
       dinoData.forEach(function (dino, index) {
         // not sure that I need to create these variable names, will revisit.
@@ -50,7 +51,7 @@
 
     // Helper functions
 
-    /*
+
     // async function, may not use. fetch for json data.
     const fetchDinoDataAsync = async function () {
       const response = await fetch("data.json");
@@ -58,13 +59,13 @@
         throw new Error("HTTP error: " + response.status);
       }
       const data = await response.json();
+      console.log(data);
       if (data.Dinos) {
       } else {
         console.log(response);
       }
       return data;
     }
-    */
 
     // non-async/await, promise-based fetch for json data.
     const fetchDinoData = function fetchDinoData() {
