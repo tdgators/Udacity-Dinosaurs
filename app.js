@@ -95,6 +95,37 @@
       })
     }
 
+    const generateFact = function (data) {
+      console.log(data.compareHeight);
+      console.log(data.compareDiet);
+      console.log(data.compareContinent);
+
+      const weightString = "This dinosaur weighs about " + data.weight + " pounds."
+      const whenString = "The " + data.species + " lived during the " + data.when + " period."
+      const localFact = data.fact;
+
+      let factString = localFact;
+
+      switch (Math.floor(Math.random()* 6)) {
+        case 0:
+          factString = compareHeight;
+          break;
+        case 1:
+          factString = compareDiet;
+          break;
+        case 2:
+          factString = compareContinent;
+          break;
+        case 3:
+          factString = weightString;
+          break;
+        case 4:
+          factString = whenString;
+          break;
+      }
+      return factString;
+    }
+
     // Create Dino Compare Method 1
     // NOTE: Weight in JSON file is in lbs, height in inches.
 
@@ -152,6 +183,9 @@
           tilesArray[i] = humanData;
         } else {
           tilesArray[j] = dinoData[j];
+          if (dinoData[j].species !== "Pigeon") {
+            tilesArray[j].fact = generateFact(dinoData[j]);
+          }
           j++;
         }
         i++;
