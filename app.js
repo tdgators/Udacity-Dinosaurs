@@ -90,10 +90,10 @@
       })
     }
 
-    const generateFact = function (data) {
-      console.log(data.compareHeight());
-      console.log(data.compareDiet());
-      console.log(data.compareContinent());
+    const generateFact = function (data, human) {
+      console.log(data.compareHeight(human.height));
+      console.log(data.compareDiet(human.diet));
+      console.log(data.compareContinent(human.where));
 
       const weightString = "This dinosaur weighs about " + data.weight + " pounds."
       const whenString = "The " + data.species + " lived during the " + data.when + " period."
@@ -103,13 +103,13 @@
 
       switch (Math.floor(Math.random()* 6)) {
         case 0:
-          factString = compareHeight();
+          factString = compareHeight(human.height);
           break;
         case 1:
-          factString = compareDiet();
+          factString = compareDiet(human.diet);
           break;
         case 2:
-          factString = compareContinent();
+          factString = compareContinent(human.where);
           break;
         case 3:
           factString = weightString;
@@ -141,7 +141,7 @@
     Dino.prototype.compareDiet = function(diet) {
       let statement = "You have the same diet!";
       if (this.diet != diet) {
-        statement = "This dinosaur is a " + this.diet;
+        statement = "This dinosaur has the diet of an " + this.diet + ".";
       }
       return statement;
     }
@@ -152,7 +152,7 @@
     Dino.prototype.compareContinent = function(where) {
       let statement = "You are from the same continent!";
       if (this.where != where) {
-        statement = "This dinosaur was typically found in " + this.where;
+        statement = "This dinosaur was typically found in " + this.where + ".";
       }
       return statement;
     }
@@ -186,7 +186,7 @@
             tilesArray.push(dinoData[j]);
             console.log(tilesArray[i]);
             if (dinoData[j].species != "Pigeon") {
-              tilesArray[i].fact = generateFact(dinoData[j]);
+              tilesArray[i].fact = generateFact(dinoData[j], humanData);
             }
             j++;
           }
