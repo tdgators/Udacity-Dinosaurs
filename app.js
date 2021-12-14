@@ -128,9 +128,9 @@
     // for these, these will update the object or potentially create an Mixin?
     Dino.prototype.compareHeight = function(height) {
       let statement = "You are the same height!";
-      if (this.height > height) {
+      if (this.height < height) {
         statement = "You are taller than a " + this.species + " who is only " + this.height + " inches.";
-      } else if (this.height < height) {
+      } else if (this.height > height) {
         statement = "A typical " + this.species + " is taller than you and is about " + this.height + " inches."
       }
       return statement;
@@ -182,7 +182,9 @@
         while (i < lengthData) {
           if (i == humanTileIndex) {
             tilesArray.push(humanData);
+            console.log(humanData.name);
             tilesArray[i].fact = humanData.name;
+            console.log(tilesArray[i].fact);
           } else {
             //console.log(dinoData[j]);
             tilesArray.push(dinoData[j]);
@@ -227,7 +229,7 @@
     // Remove form from screen
 
     function hideForm() {
-      document.getElementById('dino-compare').style.visibility='none';
+      document.getElementById('dino-compare').style.display='none';
     }
 
 
