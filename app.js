@@ -15,7 +15,7 @@
 
     // Create Dino Objects
 
-    const dinoArry = function createDino() {
+    const createDino = function () {
       const dinoData = fetchDinoData();
       const array = [];
       dinoData.forEach(function (dino, index) {
@@ -27,7 +27,7 @@
 
     // Create Human Object
     // assign human to new Dino Constructor?
-    const humanObject = function createHuman(data) {
+    const createHuman = function (data) {
       return new Dino(data);
     }
 
@@ -50,6 +50,7 @@
 
     // Helper functions
 
+    /*
     // async function, may not use. fetch for json data.
     const fetchDinoDataAsync = async function () {
       const response = await fetch("data.json");
@@ -63,15 +64,16 @@
       }
       return data;
     }
+    */
 
     // non-async/await, promise-based fetch for json data.
-    const fetchDinoData = function () {
-      fetch('data.json')
+    const fetchDinoData = function fetchDinoData() {
+      fetch('dino.json')
       .then(function(response) {
         if (!response.ok) {
           throw new Error("HTTP error, status = " + response.status);
         }
-        const data = await response.json();
+        const data = response.json();
         if (data.Dinos) {
         } else {
           console.log(response);
@@ -122,18 +124,21 @@
 
     // Generate Tiles for each Dino in Array
 
-    const generateTiles = function (dinoData) {
+    const generateTiles = function () {
 
       var tilesArray = [];
-      // use dinoData and numanData from object creation
+      // use createDino and createHuman from object creation
       let i = 0;
       let j = 0;
+
+      const dinoData = createDino();
+      const humanData = createHuman();
       // lengthData equals numer of dinosaurs array length + 1 human
-      const lengthData = dinoData.length;
+      const lengthData = dinoData.length + 1;
       const humanTileIndex = Math.floor(lengthData/2);
 
       // while the array length
-      while (i < (dinoData.length + 1)) {
+      while (i < lengthData) {
         if (i == humanTileIndex) {
           tilesArray[i] = humanData;
         } else {
@@ -158,20 +163,22 @@
         gridTile.appendChild(heading);
         gridTile.appendChild(image);
         gridTile.appendChild(fact);
-
       })
-
+      return true;
     }
 
     // Remove form from screen
 
     function hideForm() {
-      docuemnt.getElavonById('dino-compare').style.visibility='hidden';
+      document.getElementById('dino-compare').style.visibility='hidden';
     }
 
 
 // On button click, prepare and display infographic
 
-    docuemnt.getElavonById('btn').onclick = function(){
-      
-    }
+    document.getElementById('btn').onclick = function(){
+      const success = generateTiles();
+      if (success == true) {
+        hideForm()
+      }
+    };
