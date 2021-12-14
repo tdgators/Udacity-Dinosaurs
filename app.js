@@ -170,10 +170,7 @@
 
         const dinoData = await createDino();
         const humanData = await formData();
-        //console.log("generateTiles:")
-        console.log(dinoData);
-        console.log(humanData);
-        console.log(humanData.name);
+
         // lengthData equals numer of dinosaurs array length + 1 human
         const lengthData = Object.keys(dinoData).length + 1;
         const humanTileIndex = Math.floor(lengthData/2);
