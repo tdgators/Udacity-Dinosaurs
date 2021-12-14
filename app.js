@@ -15,11 +15,11 @@
 
     // Create Dino Objects
 
-    const createDino = function () {
-      const dinoData = fetchDinoDataAsync();
+    const createDino = async function () {
+      const dinoData = await fetchDinoDataAsync();
       console.log(dinoData);
       const array = [];
-      dinoData.forEach(function (dino, index) {
+      await dinoData.forEach(function (dino, index) {
         // not sure that I need to create these variable names, will revisit.
         array[index] = new Dino(dino);
       })
@@ -63,6 +63,7 @@
       const data = await response.json();
       console.log(data);
       if (data.Dinos) {
+        console.log(data.Dinos);
       } else {
         console.log(response);
       }
