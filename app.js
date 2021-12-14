@@ -45,7 +45,9 @@
 
       const height = feet * 12 + inches;
 
-      return createHuman({species: species, name: name, weight: weight, height: height, diet: diet, name: name, where: where});
+      const data = {species: species, name: name, weight: weight, height: height, diet: diet, name: name, where: where};
+      console.log(data);
+      return createHuman(data);
     })();
 
 
@@ -133,7 +135,7 @@
       let j = 0;
 
       const dinoData = await createDino();
-      const humanData = createHuman();
+      const humanData = formData();
       // lengthData equals numer of dinosaurs array length + 1 human
       const lengthData = dinoData.length + 1;
       const humanTileIndex = Math.floor(lengthData/2);
