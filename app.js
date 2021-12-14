@@ -74,12 +74,7 @@
     // non-async/await, promise-based fetch for json data.
     const fetchDinoData = function fetchDinoData() {
       fetch('dino.json')
-      .then(function(response) {
-        if (!response.ok) {
-          throw new Error("HTTP error, status = " + response.status);
-        }
-        return response.json()
-      })
+      .then(function(response => response.json()) {
       .then(function(data) {
         console.log("fetch data: " + data);
         if (data.Dinos) {
@@ -96,9 +91,9 @@
     }
 
     const generateFact = function (data) {
-      console.log(data.compareHeight);
-      console.log(data.compareDiet);
-      console.log(data.compareContinent);
+      console.log(data.compareHeight());
+      console.log(data.compareDiet());
+      console.log(data.compareContinent());
 
       const weightString = "This dinosaur weighs about " + data.weight + " pounds."
       const whenString = "The " + data.species + " lived during the " + data.when + " period."
@@ -108,13 +103,13 @@
 
       switch (Math.floor(Math.random()* 6)) {
         case 0:
-          factString = compareHeight;
+          factString = compareHeight();
           break;
         case 1:
-          factString = compareDiet;
+          factString = compareDiet();
           break;
         case 2:
-          factString = compareContinent;
+          factString = compareContinent();
           break;
         case 3:
           factString = weightString;
