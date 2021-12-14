@@ -30,14 +30,15 @@
     }
 
     // Create Human Object
-    // assign human to new Dino Constructor?  should this be something other than new?
+
     const createHuman = function (data) {
       return new Dino(data);
     }
 
     // Use IIFE to get human data from form
-    // this doesn't work, as it's taking a snapshot on initial load, but not after button process
-    // are they looking for JQuery here (as an IIFE)?
+    // this initially didn't work, as it's taking a snapshot on initial load, but not after button process
+    // I ended up wrapping the function within a function creating a closure.
+    // but are they looking for JQuery here (as an IIFE)?
 
     let formData = function() {
       return (function(){
@@ -60,7 +61,7 @@
 
     // Helper functions
 
-    // async function, may not use. fetch for json data.
+    // async function, used since the non-async wouldn't work. fetch for json data.
     const fetchDinoDataAsync = async function () {
       try {
         const response = await fetch("dino.json");
@@ -100,8 +101,10 @@
       const whenString = "The " + data.species + " lived during the " + data.when + " period."
       const localFact = data.fact;
 
+      // default is the local provided in the JSON data.
       let factString = localFact;
 
+      // creates a random string of which of the 6 options to use.
       switch (Math.floor(Math.random()* 6)) {
         case 0:
           factString = data.compareHeight(human.height);
