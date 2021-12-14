@@ -37,14 +37,14 @@
 
     // Use IIFE to get human data from form
 
-    const formData = (function(){
+    let formData = (function(){
       const species = "Human";
-      const name = document.getElementById('name').value;
-      const feet = Number(document.getElementById('feet').value) || 0;
-      const inches = Number(document.getElementById('inches').value) || 0;
-      const weight = Number(document.getElementById('weight').value) || 0;
-      const diet = document.getElementById('diet').value;
-      const where = document.getElementById('continent').value;
+      const name = document.getElementById("name").value;
+      const feet = Number(document.getElementById("feet").value) || 0;
+      const inches = Number(document.getElementById("inches").value) || 0;
+      const weight = Number(document.getElementById("weight").value) || 0;
+      const diet = document.getElementById("diet").value;
+      const where = document.getElementById("continent").value;
 
       const height = feet * 12 + inches;
 
