@@ -52,7 +52,7 @@
         let height = feet * 12 + inches;
 
         let data = {"species": species, "name": name, "weight": weight, "height": height, "diet": diet, "where": where};
-        console.log(data);
+        //console.log(data);
         return createHuman(data);
       })();
     }
