@@ -38,7 +38,7 @@
     // Use IIFE to get human data from form
 
     const formData = (function(){
-      const species = "human";
+      const species = "Human";
       const name = document.getElementById('name').value;
       const feet = Number(document.getElementById('feet').value) || 0;
       const inches = Number(document.getElementById('inches').value) || 0;
@@ -118,6 +118,7 @@
           factString = whenString;
           break;
       }
+      console.log(factString);
       return factString;
     }
 
@@ -181,12 +182,16 @@
         while (i < lengthData) {
           if (i == humanTileIndex) {
             tilesArray.push(humanData);
+            tilesArray[i].fact = "";
           } else {
             console.log(dinoData[j]);
             tilesArray.push(dinoData[j]);
             console.log(tilesArray[i]);
             if (dinoData[j].species != "Pigeon") {
-              tilesArray[i].fact = generateFact(dinoData[j], humanData);
+              const newFact = generateFact(dinoData[j], humanData);
+              console.log(newFact);
+              tilesArray[i].fact = newFact;
+
             }
             j++;
           }
@@ -213,7 +218,7 @@
 
           document.getElementById("grid").appendChild(gridTile) ;
         })
-        return true;
+        //return true;
       } catch (e) {
         console.log(e);
       }
@@ -230,8 +235,5 @@
 
     document.getElementById('btn').onclick = function(){
       const success = generateTiles();
-      if (success == true) {
-        hideForm();
-
-      }
+      hideForm();
     };
