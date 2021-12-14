@@ -172,7 +172,7 @@
         //console.log("generateTiles:")
         //console.log(dinoData);
         //console.log(JSON.stringify(dinoData));
-        //console.log(humanData);
+        console.log(humanData);
         // lengthData equals numer of dinosaurs array length + 1 human
         //console.log(Object.keys(dinoData).length);
         const lengthData = Object.keys(dinoData).length + 1;
@@ -182,9 +182,7 @@
         while (i < lengthData) {
           if (i == humanTileIndex) {
             tilesArray.push(humanData);
-            console.log(humanData.name);
             tilesArray[i].fact = humanData.name;
-            console.log(tilesArray[i].fact);
           } else {
             //console.log(dinoData[j]);
             tilesArray.push(dinoData[j]);
