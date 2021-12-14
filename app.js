@@ -48,7 +48,7 @@
 
       const height = feet * 12 + inches;
 
-      const data = {species: species, name: name, weight: weight, height: height, diet: diet, name: name, where: where};
+      const data = {species: species, name: name, weight: weight, height: height, diet: diet, where: where};
       //console.log(data);
       return createHuman(data);
     })();
@@ -172,6 +172,7 @@
         console.log(dinoData);
         console.log(humanData);
         // lengthData equals numer of dinosaurs array length + 1 human
+        console.log(dinoData.length);
         const lengthData = dinoData.length + 1;
         const humanTileIndex = Math.floor(lengthData/2);
 
@@ -188,7 +189,8 @@
           }
           i++;
         }
-        console.log("tilesArray: " + tilesArray);
+        console.log("tilesArray: ")
+        console.log(tilesArray);
 
           // Add tiles to DOM
         tilesArray.forEach(function(tile,index) {
